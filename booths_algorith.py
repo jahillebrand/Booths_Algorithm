@@ -19,7 +19,7 @@ def booths_algorithm():
     else:
         multiplicand_bin = "{0:b}".format(int(multiplicand_dec))
     
-    #Convertts Multiplier
+    #Converts Multiplier
     if int(multiplier_dec)<0:
         multiplier_bin = twos_complement(int(multiplier_dec))
     else:
@@ -43,8 +43,8 @@ def twos_complement(dec):
     #Flip bits
     flipped = flip(binint)
     
-    # Iterates through and makes the binary value 4
-    for i in range(4-len(flipped)):
+    # Iterates through and makes the binary value 8
+    for i in range(8-len(flipped)):
         flipped = "1" + flipped
     return flipped
 
