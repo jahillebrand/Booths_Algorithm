@@ -3,10 +3,22 @@
 def booths_algorithm():
     multiplicand_dec = input('Please enter your multiplicand: ')
     multiplier_dec = input('Please enter your multiplier: ')
-    multiplicand_bin = twos_complement(multiplicand_dec)
-    multiplier_bin = twos_complement(multiplier_dec)
-    print(multiplicand_bin)
-    print(multiplier_bin)
+
+    #Converts Multiplicand
+    if int(multiplicand_dec)<0:
+        multiplicand_bin = twos_complement(int(multiplicand_dec))
+    else:
+        multiplicand_bin = "{0:b}".format(int(multiplicand_dec))
+    
+    #Convertts Multiplier
+    if int(multiplier_dec)<0:
+        multiplier_bin = twos_complement(int(multiplier_dec))
+    else:
+        multiplier_bin = "{0:b}".format(int(multiplier_dec))
+
+
+    print("Multiplicand: " + multiplicand_bin)
+    print("Multiplier: " + multiplier_bin)
     return
 
 def twos_complement(dec):
@@ -23,7 +35,7 @@ def twos_complement(dec):
     for i in range(4-len(flipped)):
         flipped = "1" + flipped
     return flipped
-#AHAHHAHAHAHAAHAH
+
 #Flips the bits into a string
 def flip(string):
     flipped_string = ""
