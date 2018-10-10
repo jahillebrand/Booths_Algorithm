@@ -13,16 +13,21 @@ def booths_algorithm():
     #Converts Multiplier
     multiplier_bin = convertDec(multiplier_dec)
 
-    #Sample Print
-    print(buildLine("0", multiplicand_bin, multiplier_bin,"1"))
-
+    boothsTriumph(multiplicand_bin,multiplier_bin)
     return
+
+#Parent function for logical process
+def boothsTriumph(mcand, plier):
+    product = "00000000" + plier + "0"
+    print(buildLine(0,mcand,product))
+    for i in range(0,8):
+        leftOp(product)
 
 
 #Shows step-by-step process
 def buildLine(iteration, mcand, product, tail):
-    line = "Step: " + iteration + " | Multiplicand: " + mcand + " | Product: " + product \
-    + "|" + tail
+    line = "Step: " + str(iteration) + " | Multiplicand: " + mcand + " | Product: " \
+    + product[0:17] + "|" + product[17]
     return line
 
 #Formats numbers from decimal to binary
