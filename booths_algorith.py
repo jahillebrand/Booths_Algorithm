@@ -3,33 +3,32 @@
 def booths_algorithm():
     #Gets Multiplicand
     multiplicand_dec = getInput("Mutiplicand")
-    print(multiplicand_dec)
+
     #Gets Multiplier
     multiplier_dec = getInput("Multiplier")
-    print(multiplier_dec)
 
     #Converts Multiplicand
-    if int(multiplicand_dec)<0:
-        multiplicand_bin = twos_complement(int(multiplicand_dec))
-    else:
-        multiplicand_bin = "{0:b}".format(int(multiplicand_dec))
-        # Iterates through and makes the binary value 8
-        for i in range(8-len(multiplicand_dec)):
-            multiplicand_bin = "0" + multiplicand_bin
+    multiplicand_bin = convertDec(multiplicand_dec)
 
     #Converts Multiplier
-    if int(multiplier_dec)<0:
-        multiplier_bin = twos_complement(int(multiplier_dec))
-    else:
-        multiplier_bin = "{0:b}".format(int(multiplier_dec))
-        # Iterates through and makes the binary value 8
-        for i in range(8-len(multiplier_bin)):
-            multiplier_bin = "0" + multiplier_bin
+    multiplier_bin = convertDec(multiplier_dec)
 
     print("Multiplicand: " + multiplicand_bin)
     print("Multiplier: " + multiplier_bin)
     return
 
+#Formats numbers from decimal to binary
+def convertDec(dec):
+    if int(dec)<0:
+        bin = twos_complement(int(dec))
+    else:
+        bin = "{0:b}".format(int(dec))
+        # Iterates through and makes the binary value 8
+        for i in range(8-len(dec)):
+            bin = "0" + bin
+    return bin
+
+#Gets input for for algorithm
 def getInput(varName):
     boothIn = input('Please enter your ' + varName + ": ")
     while int(boothIn)>127 or int(boothIn)<-128:
