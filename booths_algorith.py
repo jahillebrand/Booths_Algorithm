@@ -23,7 +23,7 @@ def twos_complement(dec):
     for i in range(4-len(flipped)):
         flipped = "1" + flipped
     return flipped
-
+#AHAHHAHAHAHAAHAH
 #Flips the bits into a string
 def flip(string):
     flipped_string = ""
