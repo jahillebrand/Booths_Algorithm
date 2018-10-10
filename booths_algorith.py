@@ -24,6 +24,7 @@ def twos_complement(dec):
         flipped = "1" + flipped
     return flipped
 
+#Flips the bits into a string
 def flip(string):
     flipped_string = ""
 
