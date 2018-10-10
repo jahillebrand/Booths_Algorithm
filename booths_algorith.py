@@ -13,9 +13,17 @@ def booths_algorithm():
     #Converts Multiplier
     multiplier_bin = convertDec(multiplier_dec)
 
-    print("Multiplicand: " + multiplicand_bin)
-    print("Multiplier: " + multiplier_bin)
+    #Sample Print
+    print(buildLine("0", multiplicand_bin, multiplier_bin,"1"))
+
     return
+
+
+#Shows step-by-step process
+def buildLine(iteration, mcand, product, tail):
+    line = "Step: " + iteration + " | Multiplicand: " + mcand + " | Product: " + product \
+    + "|" + tail
+    return line
 
 #Formats numbers from decimal to binary
 def convertDec(dec):
