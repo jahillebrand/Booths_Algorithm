@@ -3,28 +3,26 @@
 def booths_algorithm():
     multiplicand_dec = input('Please enter your multiplicand: ')
     multiplier_dec = input('Please enter your multiplier: ')
-    twos_complement(multiplicand_dec)
-    twos_complement(multiplier_dec)
+    multiplicand_bin = twos_complement(multiplicand_dec)
+    multiplier_bin = twos_complement(multiplier_dec)
+    print(multiplicand_bin)
+    print(multiplier_bin)
     return
 
 def twos_complement(dec):
-    """ binint = "{0:b}".format(int(dec[1:])) #convert to binary
-    print(binint)
-    flipped = bin(~int(binint,2))
-    print(flipped)
-    twos_complement = bin(int(flipped[1:],2) + int('1',2))
-    print(twos_complement)
-    print(type(twos_complement))"""
+    #Convert to dec, adding 1, then removing negative
     adjusted = abs(int(dec) + 1)
-    print(adjusted)
+
+    #Turns into binary number
     binint = "{0:b}".format(adjusted)
-    print(binint)
+
+    #Flip bits
     flipped = flip(binint)
-    print(flipped)
-    for i in range(8-len(flipped)):
-        signed_value = "1" + flipped
-    print(signed_value)
-    return
+    
+    # Iterates through and makes the binary value 4
+    for i in range(4-len(flipped)):
+        flipped = "1" + flipped
+    return flipped
 
 def flip(string):
     flipped_string = ""
