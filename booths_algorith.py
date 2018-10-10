@@ -1,9 +1,18 @@
 #! usr/bin/python
 
 def booths_algorithm():
+    #Gets Multiplicand
     multiplicand_dec = input('Please enter your multiplicand: ')
+    while int(multiplicand_dec)>127 or int(multiplicand_dec)<-128:
+        print("Absolute value too big, please try again")
+        multiplicand_dec = input('Please enter your multiplicand: ')
+    
+    #Gets Multiplier
     multiplier_dec = input('Please enter your multiplier: ')
-
+    while int(multiplier_dec)>127 or int(multiplier_dec)<-128:
+        print("Absolute value too big, please try again")
+        multiplier_dec = input('Please enter your multiplier: ')
+    
     #Converts Multiplicand
     if int(multiplicand_dec)<0:
         multiplicand_bin = twos_complement(int(multiplicand_dec))
@@ -21,6 +30,9 @@ def booths_algorithm():
     print("Multiplier: " + multiplier_bin)
     return
 
+
+
+#Converts negative numbers
 def twos_complement(dec):
     #Convert to dec, adding 1, then removing negative
     adjusted = abs(int(dec) + 1)
@@ -35,6 +47,8 @@ def twos_complement(dec):
     for i in range(4-len(flipped)):
         flipped = "1" + flipped
     return flipped
+
+
 
 #Flips the bits into a string
 def flip(string):
