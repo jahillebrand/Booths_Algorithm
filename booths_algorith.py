@@ -16,47 +16,48 @@ def booths_algorithm():
 
     #Perform Booth's algorithm
     boothsTriumph(multiplicand_bin,multiplier_bin)
-    return
+    print("Decimal Result: " + str(int(multiplier_dec)*int(multiplicand_dec)))
 
 
 ## Parent function for logical process
 def boothsTriumph(mcand, plier):
     #Create full product line for Booth's Algorithm
-    print("mcand: " + mcand + " Plier: " + plier)
+    print("multipcand: " + mcand + " multiplier: " + plier)
     product = "00000000" + plier + "0"
     print("Product: " + product)
     #Display product line to user
     print(buildLine(0,mcand,product))
-
     #Iterate through Booth's Algorithm
     for i in range(1,8):
         operation = product[len(product)-2:]
         product = perform_operation(product,mcand,operation)
         print(buildLine(i,mcand,product))
-    ##TODO
     #Print out final value in binary and decimal
-
+    print("Product: " + product[9:17])
     return
 
-######TODO
 ## Perform the necessary algorithmic operation
 def perform_operation(product,mcand,operation):
     if operation == "00":
         product = shift(product)
+        print("No Op")
         return product
     elif operation == "01":
         ##Product = Product + mcand
         temp = binAdd(product[0:8],mcand)
         product = temp + product[8:]
         product = shift(product)
+        print("Add")
         return product
     elif operation == "10":
         ##Product = Product - mcand
         product = subtraction(product,mcand)
         product = shift(product)
+        print("Sub")
         return product
     elif operation == "11":
         product = shift(product)
+        print("No Op")
         return product
     else:
         print("An error has occured when choosing operation: Exiting program")
@@ -65,14 +66,13 @@ def perform_operation(product,mcand,operation):
 
 ## Performs Subtraction operation
 def subtraction(product,mcand):
-    carry = 0;
+    carry = 0
     prime_product = product[:8]
     final_product = ""
     for i in range(len(prime_product)-1,-1,-1):
         if (mcand[i] == "0" and prime_product[i] == "0"):
             if (carry == 1):
                 final_product = "1" + final_product
-                carry = 0
             else:
                 final_product = "0" + final_product
         elif (mcand[i] == "1" and prime_product[i] == "0"):
@@ -84,10 +84,9 @@ def subtraction(product,mcand):
         elif (mcand[i] == "0" and prime_product[i] == "1"):
             if (carry == 1):
                 final_product = "0" + final_product
-                #Not really sure what happens to "carry" here
                 carry = 0
             else:
-                final_product = "0" + final_product
+                final_product = "1" + final_product
         elif (mcand[i] == "1" and prime_product[i] == "1"):
             if (carry == 1):
                 final_product = "1" + final_product
@@ -139,7 +138,7 @@ def binAdd(num, num2):
 ## Shows step-by-step process
 def buildLine(iteration, mcand, product):
     line = "Step: " + str(iteration) + " | Multiplicand: " + mcand + " | Product: " \
-    + product[0:18] + "|" + product[18]
+    + product[0:8] + " | " + product[8:16] + " | " + product[16]
     return line
 
 
@@ -152,7 +151,7 @@ def convertDec(dec):
     else:
         bin = "{0:b}".format(int(dec))
         # Iterates through and makes the binary value 8
-        for i in range(8-len(dec)):
+        for i in range(8-len(bin)):
             bin = "0" + bin
     return bin
 
