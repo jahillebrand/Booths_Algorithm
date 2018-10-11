@@ -15,7 +15,8 @@ def booths_algorithm():
     multiplier_bin = convertDec(multiplier_dec)
 
     #Perform Booth's algorithm
-    boothsTriumph(multiplicand_bin,multiplier_bin)
+    #boothsTriumph(multiplicand_bin,multiplier_bin)
+    print(perform_operation("00000000010101001","01010101","01"))
     return
 
 
@@ -32,7 +33,6 @@ def boothsTriumph(mcand, plier):
         ######MiliensOriginalIdea->leftOp(product)
         operation = product[len(product)-2:]
         product = perform_operation(product,mcand,operation)
-
     ##TODO
     #Print out final value in binary and decimal
 
@@ -46,10 +46,15 @@ def perform_operation(product,mcand,operation):
         return product
     elif operation == "01":
         ##Product = Product + mcand
-        print("I do nothing")
+        temp = binAdd(product[0:8],mcand)
+        product = temp + product[8:]
+        product = shift(product)
+        return product
     elif operation == "10":
         ##Product = Product - mcand
-        print("I do nothing")
+
+        product = shift(product)
+        return product
     elif operation == "11":
         product = shift(product)
         return product
