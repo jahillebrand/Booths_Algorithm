@@ -28,12 +28,14 @@ def boothsTriumph(mcand, plier):
     #Display product line to user
     print(buildLine(0,mcand,product))
     #Iterate through Booth's Algorithm
-    for i in range(1,8):
+    for i in range(1,9):
         operation = product[len(product)-2:]
         product = perform_operation(product,mcand,operation)
         print(buildLine(i,mcand,product))
     #Print out final value in binary and decimal
-    print("Product: " + product[9:17])
+    product = shift(product)
+    product = product[9:17]
+    print("Product: " + product)
     return
 
 ## Perform the necessary algorithmic operation
