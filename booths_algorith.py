@@ -42,21 +42,17 @@ def boothsTriumph(mcand, plier):
 ## Perform the necessary algorithmic operation
 def perform_operation(product,mcand,operation):
     if (operation == "00"):
-        ##Do stuff
-        return #$PRODUCT
+        ##Do Nothing
     else if (operation == "01"):
         ##Do other stuff
-        return #$PRODUCT
     else if (operation == "10"):
         ##Do other, other stuff
-        return #$PRODUCT
     else if (operation == "11"):
-        ##Do more stuff
-        return #$PRODUCT
+        ##Do Nothing
     else:
         print("An error has occured when choosing operation: Exiting program")
         return 0
-
+    ##Shift right!
 
 ## Shows step-by-step process
 def buildLine(iteration, mcand, product, tail):
