@@ -23,7 +23,7 @@ def booths_algorithm():
 def boothsTriumph(mcand, plier):
     #Create full product line for Booth's Algorithm
     product = "00000000" + plier + "0"
-
+    print("Product: " + product)
     #Display product line to user
     print(buildLine(0,mcand,product))
 
@@ -41,15 +41,18 @@ def boothsTriumph(mcand, plier):
 ######TODO
 ## Perform the necessary algorithmic operation
 def perform_operation(product,mcand,operation):
-    if (operation == "00"):
+    if operation == "00":
+        print("I do nothing")
         ##Do Nothing
-    else if (operation == "01"):
+    elif operation == "01":
         ##Product = Product + mcand
-
-    else if (operation == "10"):
+        print("I do nothing")
+    elif operation == "10":
         ##Product = Product - mcand
-    else if (operation == "11"):
+        print("I do nothing")
+    elif operation == "11":
         ##Do Nothing
+        print("I do nothing")
     else:
         print("An error has occured when choosing operation: Exiting program")
         return 0
@@ -58,8 +61,8 @@ def perform_operation(product,mcand,operation):
 ##Adds the two binary strings
 def binAdd(num, num2):
     product = ""
-    carry = ""
-    for i in range(-1,-len(num)):
+    carry = "0"
+    for i in range(len(num)-1,-1,-1):
         if carry == "0":
             if num[i] == "0" and num2[i] == "0":
                 product = "0" + product
@@ -71,18 +74,17 @@ def binAdd(num, num2):
         elif carry == "1":
             if num[i] == "0" and num2[i] == "0":
                 product = "1" + product
+                carry = "0"
             elif num[i] == "1" and num2[i] == "1": #case 1 and 1
                 product = "1" + product
                 carry = "1"
             else:
                 product = "0" + product
-                carry 
-
-        else #case 0 and 1
-
+                carry = "1"
+    return product
 
 ## Shows step-by-step process
-def buildLine(iteration, mcand, product, tail):
+def buildLine(iteration, mcand, product):
     line = "Step: " + str(iteration) + " | Multiplicand: " + mcand + " | Product: " \
     + product[0:17] + "|" + product[17]
     return line
