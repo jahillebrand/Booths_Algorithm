@@ -44,15 +44,26 @@ def perform_operation(product,mcand,operation):
     if (operation == "00"):
         ##Do Nothing
     else if (operation == "01"):
-        ##Do other stuff
+        ##Product = Product + mcand
+
     else if (operation == "10"):
-        ##Do other, other stuff
+        ##Product = Product - mcand
     else if (operation == "11"):
         ##Do Nothing
     else:
         print("An error has occured when choosing operation: Exiting program")
         return 0
     ##Shift right!
+
+##Adds the two binary strings
+def binAdd(num, num2):
+    product = ""
+    for i in range(-1,-len(num)):
+        if num[i] == "0" and num2[i] == "0":
+            product = "0" + product
+        elif num[i] #case 1 and 1
+        else #case 0 and 1
+
 
 ## Shows step-by-step process
 def buildLine(iteration, mcand, product, tail):
