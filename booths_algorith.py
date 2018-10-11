@@ -58,10 +58,26 @@ def perform_operation(product,mcand,operation):
 ##Adds the two binary strings
 def binAdd(num, num2):
     product = ""
+    carry = ""
     for i in range(-1,-len(num)):
-        if num[i] == "0" and num2[i] == "0":
-            product = "0" + product
-        elif num[i] #case 1 and 1
+        if carry == "0":
+            if num[i] == "0" and num2[i] == "0":
+                product = "0" + product
+            elif num[i] == "1" and num2[i] == "1": #case 1 and 1
+                product = "0" + product
+                carry = "1"
+            else:
+                product = "1" + product
+        elif carry == "1":
+            if num[i] == "0" and num2[i] == "0":
+                product = "1" + product
+            elif num[i] == "1" and num2[i] == "1": #case 1 and 1
+                product = "1" + product
+                carry = "1"
+            else:
+                product = "0" + product
+                carry 
+
         else #case 0 and 1
 
 
