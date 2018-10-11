@@ -15,7 +15,8 @@ def booths_algorithm():
     multiplier_bin = convertDec(multiplier_dec)
 
     #Perform Booth's algorithm
-    boothsTriumph(multiplicand_bin,multiplier_bin)
+    #boothsTriumph(multiplicand_bin,multiplier_bin)
+    print(perform_operation("00000000010101001","01010101","01"))
     return
 
 
@@ -23,7 +24,7 @@ def booths_algorithm():
 def boothsTriumph(mcand, plier):
     #Create full product line for Booth's Algorithm
     product = "00000000" + plier + "0"
-
+    print("Product: " + product)
     #Display product line to user
     print(buildLine(0,mcand,product))
 
@@ -31,7 +32,6 @@ def boothsTriumph(mcand, plier):
     for i in range(0,8):
         operation = product[len(product)-2:]
         product = perform_operation(product,mcand,operation)
-
     ##TODO
     #Print out final value in binary and decimal
 
@@ -40,15 +40,21 @@ def boothsTriumph(mcand, plier):
 ######TODO
 ## Perform the necessary algorithmic operation
 def perform_operation(product,mcand,operation):
-    if (operation == "00"):
+    if operation == "00":
         product = shift(product)
         return product
-    elif (operation == "01"):
+    elif operation == "01":
         ##Product = Product + mcand
-
-    elif (operation == "10"):
+        temp = binAdd(product[0:8],mcand)
+        product = temp + product[8:]
+        product = shift(product)
+        return product
+    elif operation == "10":
         ##Product = Product - mcand
-    elif (operation == "11"):
+
+        product = shift(product)
+        return product
+    elif operation == "11":
         product = shift(product)
         return product
     else:
@@ -105,15 +111,30 @@ def shift(product):
 ##Adds the two binary strings
 def binAdd(num, num2):
     product = ""
-    for i in range(-1,-len(num)):
-        if num[i] == "0" and num2[i] == "0":
-            product = "0" + product
-        elif num[i] #case 1 and 1
-        else #case 0 and 1
-
+    carry = "0"
+    for i in range(len(num)-1,-1,-1):
+        if carry == "0":
+            if num[i] == "0" and num2[i] == "0":
+                product = "0" + product
+            elif num[i] == "1" and num2[i] == "1": #case 1 and 1
+                product = "0" + product
+                carry = "1"
+            else:
+                product = "1" + product
+        elif carry == "1":
+            if num[i] == "0" and num2[i] == "0":
+                product = "1" + product
+                carry = "0"
+            elif num[i] == "1" and num2[i] == "1": #case 1 and 1
+                product = "1" + product
+                carry = "1"
+            else:
+                product = "0" + product
+                carry = "1"
+    return product
 
 ## Shows step-by-step process
-def buildLine(iteration, mcand, product, tail):
+def buildLine(iteration, mcand, product):
     line = "Step: " + str(iteration) + " | Multiplicand: " + mcand + " | Product: " \
     + product[0:17] + "|" + product[17]
     return line
