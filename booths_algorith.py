@@ -42,8 +42,8 @@ def boothsTriumph(mcand, plier):
 ## Perform the necessary algorithmic operation
 def perform_operation(product,mcand,operation):
     if operation == "00":
-        print("I do nothing")
-        ##Do Nothing
+        product = shift(product)
+        return product
     elif operation == "01":
         ##Product = Product + mcand
         print("I do nothing")
@@ -51,12 +51,18 @@ def perform_operation(product,mcand,operation):
         ##Product = Product - mcand
         print("I do nothing")
     elif operation == "11":
-        ##Do Nothing
-        print("I do nothing")
+        product = shift(product)
+        return product
     else:
         print("An error has occured when choosing operation: Exiting program")
         return 0
-    ##Shift right!
+
+
+## Shifts in left
+def shift(product):
+    product = "0"+product[:len(product)-1]
+    return product
+
 
 ##Adds the two binary strings
 def binAdd(num, num2):
