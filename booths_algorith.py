@@ -15,23 +15,24 @@ def booths_algorithm():
     multiplier_bin = convertDec(multiplier_dec)
 
     #Perform Booth's algorithm
-    #boothsTriumph(multiplicand_bin,multiplier_bin)
-    print(perform_operation("00000000010101001","01010101","01"))
+    boothsTriumph(multiplicand_bin,multiplier_bin)
     return
 
 
 ## Parent function for logical process
 def boothsTriumph(mcand, plier):
     #Create full product line for Booth's Algorithm
+    print("mcand: " + mcand + " Plier: " + plier)
     product = "00000000" + plier + "0"
     print("Product: " + product)
     #Display product line to user
     print(buildLine(0,mcand,product))
 
     #Iterate through Booth's Algorithm
-    for i in range(0,8):
+    for i in range(1,8):
         operation = product[len(product)-2:]
         product = perform_operation(product,mcand,operation)
+        print(buildLine(i,mcand,product))
     ##TODO
     #Print out final value in binary and decimal
 
@@ -51,7 +52,7 @@ def perform_operation(product,mcand,operation):
         return product
     elif operation == "10":
         ##Product = Product - mcand
-
+        product = subtraction(product,mcand)
         product = shift(product)
         return product
     elif operation == "11":
@@ -98,7 +99,9 @@ def subtraction(product,mcand):
             print("An error has occurred when subtracting: Exiting program")
             return 0
 
+
     return final_product + product[8:]
+
 
 
 
@@ -136,7 +139,7 @@ def binAdd(num, num2):
 ## Shows step-by-step process
 def buildLine(iteration, mcand, product):
     line = "Step: " + str(iteration) + " | Multiplicand: " + mcand + " | Product: " \
-    + product[0:17] + "|" + product[17]
+    + product[0:18] + "|" + product[18]
     return line
 
 
