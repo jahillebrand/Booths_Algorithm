@@ -1,4 +1,4 @@
-#Alt-Booth's Algorithm
+#Booth's Algorithm
 ## Authors: Milien McDermott and Jacob Hillebrand
 
 This python program will perform Booth's Algorithm on two integers between -128
